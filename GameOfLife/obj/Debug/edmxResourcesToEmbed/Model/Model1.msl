@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MatricesModelStoreContainer" CdmEntityContainer="MatricesEntities">
+    <EntitySetMapping Name="Matrices">
+      <EntityTypeMapping TypeName="MatricesModel.Matrix">
+        <MappingFragment StoreEntitySet="Matrices">
+          <ScalarProperty Name="MatrixName" ColumnName="MatrixName" />
+          <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+          <ScalarProperty Name="ColNo" ColumnName="ColNo" />
+          <ScalarProperty Name="CellValue" ColumnName="CellValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatrixImages">
+      <EntityTypeMapping TypeName="MatricesModel.MatrixImage">
+        <MappingFragment StoreEntitySet="MatrixImages">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="path" ColumnName="path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

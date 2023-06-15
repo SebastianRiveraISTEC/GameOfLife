@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MatricesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Matrix">
+    <Key>
+      <PropertyRef Name="MatrixName" />
+      <PropertyRef Name="RowNo" />
+      <PropertyRef Name="ColNo" />
+    </Key>
+    <Property Name="MatrixName" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RowNo" Type="Int16" Nullable="false" />
+    <Property Name="ColNo" Type="Int16" Nullable="false" />
+    <Property Name="CellValue" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MatrixImage">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MatricesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Matrices" EntityType="Self.Matrix" />
+    <EntitySet Name="MatrixImages" EntityType="Self.MatrixImage" />
+  </EntityContainer>
+</Schema>
