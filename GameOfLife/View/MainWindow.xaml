@@ -21,11 +21,11 @@
 
         <DockPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" Grid.RowSpan="2">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Principal">
-                    <MenuItem Header="Page 1" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page1"></MenuItem>
-                    <MenuItem Header="Page 2" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page2"></MenuItem>
+                <MenuItem Header="Menu">
+                    <MenuItem Header="Game" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page1"></MenuItem>
+                    <MenuItem Header="Add/Remove" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page2"></MenuItem>
                     <Separator/>
-                    <MenuItem Header="Sair"></MenuItem>
+                    <MenuItem Header="Quit" Command="{Binding ctrl.cmdquit}"></MenuItem>
                 </MenuItem>
             </Menu>
         </DockPanel>

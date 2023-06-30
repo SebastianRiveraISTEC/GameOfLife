@@ -26,6 +26,7 @@ namespace GameOfLife.Controller
         public CmdArg cmdadd { get; set; }
         public CmdArg cmddel { get; set; }
         public CmdArg cmdupd { get; set; }
+        public Cmd cmdquit { get; set; }
 
         public MyController(int lowerLimit, int upperLimit, int reproduction, int maintain1, int maintain2)
         {
@@ -41,7 +42,14 @@ namespace GameOfLife.Controller
             cmdadd = new CmdArg(addMatrix, (parameter) => true);
             cmddel = new CmdArg(delMatrix, (parameter) => true);
             cmdupd = new CmdArg(updateMatrix, (parameter) => true);
+            cmdquit = new Cmd(Quit, canexecute: null);
 
+        }
+
+        public void Quit()
+        {
+            Trace.WriteLine("Shutdown called");
+            Application.Current.Shutdown();
         }
 
         public void updateMatrix(object parameter)
@@ -50,7 +58,6 @@ namespace GameOfLife.Controller
 
             delMatrix(vm.CurrentMatrix);
             addMatrix(parameter);
-
             //using(matrixEntities db = new matrixEntities())
             //{
 
