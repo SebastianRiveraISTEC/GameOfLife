@@ -140,15 +140,15 @@ namespace GameOfLife.Model
                 ViewMatrices = CollectionViewSource.GetDefaultView(Matrices);
                 ViewMatrices.MoveCurrentToPosition(pos);
                 ViewMatrices.CurrentChanged += ViewMatrices_CurrentChanged;
-                ViewMatrices.CurrentChanging += ViewMatrices_CurrentChanging;
+                //ViewMatrices.CurrentChanging += ViewMatrices_CurrentChanging;
                 CurrentMatrix = ViewMatrices.CurrentItem as MatrixInstance;
             }
         }
 
-        private void ViewMatrices_CurrentChanging(object sender, CurrentChangingEventArgs e)
-        {
-            //ctrl.updateMatrix(CurrentMatrix);
-        }
+        //private void ViewMatrices_CurrentChanging(object sender, CurrentChangingEventArgs e)
+        //{
+        //    ctrl.updateMatrix(CurrentMatrix);
+        //}
 
         private void ViewMatrices_CurrentChanged(object sender, EventArgs e)
         {

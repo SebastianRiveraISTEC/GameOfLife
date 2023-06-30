@@ -37,6 +37,11 @@ namespace GameOfLife
                 controller.cmdcreate.Execute(null);
             }
         }
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(500);
+            mtrxName.Text = string.Empty;
+        }
     }
 }
 

@@ -7,6 +7,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Diagnostics;
 using GameOfLife.Model;
+using System.Windows.Controls;
+using System.IO;
+using System.Xml.Linq;
 
 namespace GameOfLife.Controller
 {
@@ -22,6 +25,7 @@ namespace GameOfLife.Controller
         public CmdArg cmdload { get; set; }
         public CmdArg cmdadd { get; set; }
         public CmdArg cmddel { get; set; }
+        public CmdArg cmdupd { get; set; }
 
         public MyController(int lowerLimit, int upperLimit, int reproduction, int maintain1, int maintain2)
         {
@@ -36,21 +40,56 @@ namespace GameOfLife.Controller
             cmdload = new CmdArg(g.btnLoadBoard, (parameter) => true);
             cmdadd = new CmdArg(addMatrix, (parameter) => true);
             cmddel = new CmdArg(delMatrix, (parameter) => true);
+            cmdupd = new CmdArg(updateMatrix, (parameter) => true);
+
         }
 
         public void updateMatrix(object parameter)
         {
             if (parameter == null) return;
-            using(matrixEntities db = new matrixEntities())
-            {
-                MatrixInstance current = parameter as MatrixInstance;
-                Cell[,] currMatrix = current.matrix;
-                string name = current.name;
-                string path = current.imgLocation;
+
+            delMatrix(vm.CurrentMatrix);
+            addMatrix(parameter);
+
+            //using(matrixEntities db = new matrixEntities())
+            //{
 
 
+            //    MatrixInstance current = vm.CurrentMatrix;
+            //    MatrixImage newImageEntry = db.MatrixImages.Find(current.name);
+            //    string newName = (string)parameter;
+            //    newImageEntry.Name = newName;
+            //    newImageEntry.path = newName + ".png";
+            //    db.SaveChanges();
 
-            }
+
+            //    var toDelete = db.Matrices.Where(m => m.MatrixName == newName).ToList();
+            //    foreach (var m in toDelete)
+            //    {
+            //        db.Matrices.Remove(m);
+            //    }
+
+
+            //    for (int i = 0; i < GameBoard.boardSize; i++)
+            //    {
+            //        for (int j = 0; j < GameBoard.boardSize; j++)
+            //        {
+            //            if (g.board[i, j].State == true)
+            //            {
+            //                Matrix newMatrixEntry = new Matrix();
+            //                newMatrixEntry.CellValue = "alive";
+            //                newMatrixEntry.RowNo = (short)i;
+            //                newMatrixEntry.ColNo = (short)j;
+            //                newMatrixEntry.MatrixName = (string)parameter;
+            //                db.Matrices.Add(newMatrixEntry);
+            //            }
+            //        }
+            //    }
+            //    db.SaveChanges();
+            //    vm.start(0);
+            //    vm.ViewMatrices.MoveCurrentToLast();
+            //    g.ResetGame();
+            //}
         }
 
         public void addMatrix(object parameter)
@@ -78,10 +117,15 @@ namespace GameOfLife.Controller
                 }
                 newImageEntry.Name = (string)parameter;
                 newImageEntry.path = path;
+                if((string)parameter != "yorkie")
+                {
+                    g.saveCanvasImg(path);
+                }
                 db.MatrixImages.Add(newImageEntry);
                 db.SaveChanges();
                 vm.start(0);
                 vm.ViewMatrices.MoveCurrentToLast();
+                g.ResetGame();
             }
         }
 
@@ -105,6 +149,16 @@ namespace GameOfLife.Controller
                 }
                 db.SaveChanges();
                 vm.start(0);
+
+                if(name != "yorkie")
+                {
+                    string path = System.Environment.CurrentDirectory;
+                    path = path.Substring(0, path.IndexOf("bin"));
+                    path += @"Images\";
+                    path += name + ".png";
+
+                    File.Delete(path);
+                }
             }
         }
     }

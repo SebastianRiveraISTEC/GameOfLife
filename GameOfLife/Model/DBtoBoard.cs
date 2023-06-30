@@ -39,7 +39,7 @@ namespace GameOfLife.Model
                     int i = coord.RowNo;
                     int j = coord.ColNo;
 
-                    if (i >= boardSize-2 || j >= boardSize-2)
+                    if (i >= boardSize-1 || j >= boardSize-1 || i==0 || j==0)
                     {
                         throw new Exception("Matrix doesn't fit board");
                     }

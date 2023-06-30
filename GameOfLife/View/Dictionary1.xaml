@@ -6,5 +6,4 @@
     <ctrl:MyController x:Key="ctrl"></ctrl:MyController>
     <ctrl:PathToImg x:Key="cvt"></ctrl:PathToImg>
     <model:ViewModel x:Key="vm"></model:ViewModel>
-    <ctrl:TwoParameterConverter x:Key="tpcvt"></ctrl:TwoParameterConverter>
 </ResourceDictionary>

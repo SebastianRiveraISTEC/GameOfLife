@@ -14,6 +14,7 @@ using System.Timers;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using GameOfLife.view;
+using System.Windows.Media.Imaging;
 
 namespace GameOfLife.Model
 {
@@ -561,6 +562,42 @@ namespace GameOfLife.Model
             pauseEnabled = !(started && !paused && created);
             resetEnabled = !created;
             stepEnabled = !(created && started && paused);
+        }
+
+        public void saveCanvasImg(string imgName)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                Frame frame = mainWindow.FindName("frm") as Frame;
+                if (frame != null && frame.Content is Page mainGamePage)
+                {
+                    Canvas canvasBoard = mainGamePage.FindName("CanvasBoard") as Canvas;
+                    if (canvasBoard != null)
+                    {
+                        string path = System.Environment.CurrentDirectory;
+                        path = path.Substring(0, path.IndexOf("bin"));
+                        path += @"Images\";
+                        path += imgName;
+                        Trace.WriteLine("Called canvas to img");
+                        Trace.WriteLine("Saved on:", path);
+                        RenderTargetBitmap rtb = new RenderTargetBitmap((int)canvasBoard.RenderSize.Width,
+                        (int)canvasBoard.RenderSize.Height, 96d, 96d, PixelFormats.Default);
+                        rtb.Render(canvasBoard);
+
+                        var crop = new CroppedBitmap(rtb, new Int32Rect(120, 220, 500, 500));
+
+                        BitmapEncoder pngEncoder = new PngBitmapEncoder();
+                        pngEncoder.Frames.Add(BitmapFrame.Create(crop));
+
+                        using (var fs = System.IO.File.Create(path))
+                        {
+                            pngEncoder.Save(fs);
+                        }
+                        Trace.WriteLine("canvas to img saved");
+                    }
+                }
+            }           
         }
 
         public void btnStartOnClick()

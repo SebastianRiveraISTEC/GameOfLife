@@ -9,7 +9,7 @@
           mc:Ignorable="d" 
           d:DesignHeight="450" d:DesignWidth="800"
           Title="MainGame"
-          Background="pink"
+          Background="#4B443C"
           >
 
     <Page.Resources>
@@ -27,8 +27,8 @@
             <Setter Property="Width" Value="150"/>
             <Setter Property="Height" Value="80"/>
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="LightBlue"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#E4E5E8"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Template">
@@ -42,11 +42,11 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="LightCyan"/>
+                                <Setter Property="Background" Value="#53565A"/>
                                 <Setter Property="Foreground" Value="Black"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="DarkBlue"/>
+                                <Setter Property="Background" Value="#4D0011"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -59,8 +59,8 @@
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="LightBlue"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#E4E5E8"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Template">
@@ -75,11 +75,11 @@
                         
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="LightCyan"/>
+                                <Setter Property="Background" Value="#53565A"/>
                                 <Setter Property="Foreground" Value="Black"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="DarkBlue"/>
+                                <Setter Property="Background" Value="#4D0011"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
