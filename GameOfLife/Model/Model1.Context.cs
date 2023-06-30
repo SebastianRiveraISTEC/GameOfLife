@@ -13,10 +13,10 @@ namespace GameOfLife.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MatricesEntities : DbContext
+    public partial class matrixEntities : DbContext
     {
-        public MatricesEntities()
-            : base("name=MatricesEntities")
+        public matrixEntities()
+            : base("name=matrixEntities")
         {
         }
     

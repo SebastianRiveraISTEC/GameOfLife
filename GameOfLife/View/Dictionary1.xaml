@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GameOfLife"
+                    xmlns:ctrl="clr-namespace:GameOfLife.Controller"
+                    xmlns:model="clr-namespace:GameOfLife.Model">
+    <ctrl:MyController x:Key="ctrl"></ctrl:MyController>
+    <ctrl:PathToImg x:Key="cvt"></ctrl:PathToImg>
+    <model:ViewModel x:Key="vm"></model:ViewModel>
+    <ctrl:TwoParameterConverter x:Key="tpcvt"></ctrl:TwoParameterConverter>
+</ResourceDictionary>

@@ -211,7 +211,7 @@ namespace GameOfLife.Model
             aliveCells = 0;
         }
         //consts
-        public const int boardSize = 102;
+        public static int boardSize = 102;
         public const int cellSize = 9;
         public int CreationDelay;
         //
@@ -227,58 +227,80 @@ namespace GameOfLife.Model
 
 
 
-        MainWindow mw = (MainWindow)Application.Current.MainWindow;
+        MainWindow mw = (MainWindow)Application.Current.MainWindow;/// <summary>
+        /// /////////////////
+        /// </summary>
+
+        
+
         public Cell[,] board;
 
         public void CreateBoard()
         {
-            created = true;
-            DisableButtons();
-            //aliveCells = 0;
-            mw.CanvasBoard.Children.Clear();
-            for (int i = 0; i < boardSize; i++)
+            Trace.WriteLine("Called CreateBoard");
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
             {
-                for (int j = 0; j < boardSize; j++)
+                Frame frame = mainWindow.FindName("frm") as Frame;
+                if (frame != null && frame.Content is Page mainGamePage)
                 {
-                    board[i, j] = new Cell();
-                    if (i == 0 || i == boardSize - 1 || j == 0 || j == boardSize - 1)
+                    Canvas canvasBoard = mainGamePage.FindName("CanvasBoard") as Canvas;
+                    if (canvasBoard != null)
                     {
-                        Rectangle r = new Rectangle
-                        {
-                            Width = cellSize,
-                            Height = cellSize,
-                            Stroke = Brushes.DarkGray,
-                            StrokeThickness = 0.5,
-                            Fill = Brushes.DarkGray
-                        };
+                        created = true;
+                        DisableButtons();
+                        //aliveCells = 0;
 
-                        board[i, j].Shape = r;
-                        board[i, j].isBorder = true;
-                        Canvas.SetLeft(r, j * cellSize);
-                        Canvas.SetTop(r, i * cellSize);
-                        mw.CanvasBoard.Children.Add(r);
-                    }
-                    else
-                    {
-                        board[i, j].State = false;
-                        int[] aux = { j, i };
-                        Rectangle r = new Rectangle
+                        canvasBoard.Children.Clear();
+                        for (int i = 0; i < boardSize; i++)
                         {
-                            Width = cellSize,
-                            Height = cellSize,
-                            Stroke = Brushes.Black,
-                            StrokeThickness = 0.5,
-                            Fill = Brushes.Black,
-                            Tag = aux,
-                        };
-                        r.MouseDown += LeftMouseDown;
-                        board[i, j].Shape = r;
-                        Canvas.SetLeft(r, j * cellSize);
-                        Canvas.SetTop(r, i * cellSize);
-                        mw.CanvasBoard.Children.Add(r);
+                            for (int j = 0; j < boardSize; j++)
+                            {
+                                board[i, j] = new Cell();
+                                if (i == 0 || i == boardSize - 1 || j == 0 || j == boardSize - 1)
+                                {
+                                    Rectangle r = new Rectangle
+                                    {
+                                        Width = cellSize,
+                                        Height = cellSize,
+                                        Stroke = Brushes.DarkGray,
+                                        StrokeThickness = 0.5,
+                                        Fill = Brushes.DarkGray
+                                    };
+
+                                    board[i, j].Shape = r;
+                                    board[i, j].isBorder = true;
+                                    Canvas.SetLeft(r, j * cellSize);
+                                    Canvas.SetTop(r, i * cellSize);
+                                    canvasBoard.Children.Add(r);
+                                }
+                                else
+                                {
+                                    board[i, j].State = false;
+                                    int[] aux = { j, i };
+                                    Rectangle r = new Rectangle
+                                    {
+                                        Width = cellSize,
+                                        Height = cellSize,
+                                        Stroke = Brushes.Black,
+                                        StrokeThickness = 0.5,
+                                        Fill = Brushes.Black,
+                                        Tag = aux,
+                                    };
+                                    r.MouseDown += LeftMouseDown;
+                                    board[i, j].Shape = r;
+                                    Canvas.SetLeft(r, j * cellSize);
+                                    Canvas.SetTop(r, i * cellSize);
+                                    canvasBoard.Children.Add(r);
+                                }
+                            }
+                        }
                     }
                 }
+                else { Trace.WriteLine("Frame was null"); }
             }
+            else { Trace.WriteLine("Windows was null"); }
+                        
         }
 
         private void LeftMouseDown(object sender, MouseEventArgs e)
@@ -391,10 +413,27 @@ namespace GameOfLife.Model
             return ans;
         }
 
-        private void Window_Loaded()
+        public void LoadBoard(Cell[,] newBoard)
         {
-            CreateBoard();
+            ResetGame();
+            Trace.WriteLine("After reset");
+            for (int i = 0; i < boardSize - 1; i++)
+            {
+                for (int j = 0; j < boardSize; j++)
+                {
+                    Cell currentCell = board[i, j];
+                    Cell newCell = newBoard[i, j];
+                    if(newCell.State == true)
+                    {
+                        FlipCell(currentCell);
+                        //DrawCell(currentCell);
+                    }
+                    board[i, j] = currentCell;
+                }
+            }
+            Trace.WriteLine("After drawing");
         }
+
         public void StartGame()
         {
             Trace.WriteLine("StartGame called");
@@ -555,7 +594,6 @@ namespace GameOfLife.Model
                 DisableButtons();
             }
         }
-
         public void btnSingleStep()
         {
             if (!stepEnabled)
@@ -563,6 +601,21 @@ namespace GameOfLife.Model
                 SingleStep();
                 DisableButtons();
             }
+        }
+
+        public void btnLoadBoard(object parameter)
+        {
+            Trace.WriteLine("btnLoadBoard called");
+            if(parameter != null)
+            {
+                Cell[,] newBoard = parameter as Cell[,];
+                LoadBoard(newBoard);
+            }
+            else
+            {
+                Trace.WriteLine("Load Parameter was null :c");
+            }
+            
         }
     }
 }

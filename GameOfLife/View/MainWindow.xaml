@@ -11,42 +11,28 @@
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
         Height="{x:Static SystemParameters.PrimaryScreenHeight}"
         WindowState ="Maximized">
+        
 
-    <Window.Resources>
-        <ObjectDataProvider x:Key="controller" ObjectType="controller:MyController">
-            <ObjectDataProvider.ConstructorParameters>
-                <sys:Int16>2</sys:Int16>
-                <sys:Int16>3</sys:Int16>
-                <sys:Int16>3</sys:Int16>
-                <sys:Int16>2</sys:Int16>
-                <sys:Int16>3</sys:Int16>
-            </ObjectDataProvider.ConstructorParameters>
-        </ObjectDataProvider>
-
-
-    </Window.Resources>
-    <Grid DataContext="{Binding Source={StaticResource controller}}">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="1035*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <!--<Button Height="20" Width="40" Content="Test" Click="btnStartOnClick"></Button>-->
-                <TextBlock Foreground="Blue" x:Name="TextTest" Text="{Binding g.aliveCells }"/>
-                <Button Height="20" Width="40" Content="Create" Command="{Binding cmdcreate}" IsEnabled = "{Binding g.createEnabled}"></Button>
-                <Button Height="20" Width="40" Content="Play" Command="{Binding cmdplay}">
-                </Button>
-                <TextBlock Foreground="Blue" Text="{Binding g.ticks }"/>
-                <Button Height="20" Width="40" Content="Pause" Command="{Binding cmdpause}"></Button>
-                <Button Height="20" Width="40" Content="Reset" Command="{Binding cmdreset}"></Button>
-                <Button Height="20" Width="40" Content="Step" Command="{Binding cmdstep}" ></Button>
-            </StackPanel>
-            <Canvas Grid.Row="2" x:Name="CanvasBoard"/>
-            <!--<StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Value, ElementName=testSlider}"></TextBox>
-                <Slider Name="testSlider" Value="2" Minimum="1" Maximum="8" TickPlacement="Both" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
-            </StackPanel>-->
-        </StackPanel>
+
+        <DockPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" Grid.RowSpan="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Principal">
+                    <MenuItem Header="Page 1" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page1"></MenuItem>
+                    <MenuItem Header="Page 2" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page2"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Sair"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <DockPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="1">
+            <Frame Name="frm" Source="{Binding Ph.CurrentPage}" NavigationUIVisibility="Hidden"></Frame>
+        </DockPanel>
+
     </Grid>
 </Window>

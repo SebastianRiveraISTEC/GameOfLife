@@ -1,0 +1,110 @@
+﻿<Page x:Class="GameOfLife.Add"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:ctrl="clr-namespace:GameOfLife.Controller"
+      xmlns:local="clr-namespace:GameOfLife"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Add"
+      Background="Green">
+    <Page.Resources>
+        
+        <ObjectDataProvider x:Key="ctrl" ObjectType="ctrl:MyController">
+            <ObjectDataProvider.ConstructorParameters>
+                <sys:Int16>2</sys:Int16>
+                <sys:Int16>3</sys:Int16>
+                <sys:Int16>3</sys:Int16>
+                <sys:Int16>2</sys:Int16>
+                <sys:Int16>3</sys:Int16>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+
+        <Style x:Key="RoundButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightCyan"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="DarkBlue"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid DataContext="{Binding Source={StaticResource ctrl}}" x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="209*"/>
+            <RowDefinition Height="133*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Style="{StaticResource RoundButtonStyle}" Content="Add" Command="{Binding cmdadd}"
+                    CommandParameter="{Binding ElementName=mtrxName, Path=Text}"
+                    ></Button>
+            <Button Style="{StaticResource RoundButtonStyle}" Content="Remove" Command="{Binding cmddel}" 
+                    CommandParameter="{Binding CurrentMatrix, Source={StaticResource vm}}"></Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="3">
+            <Canvas x:Name="CanvasBoard"/>
+        </StackPanel>
+
+        <StackPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Center">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView ItemsSource="{Binding ViewMatrices}" IsSynchronizedWithCurrentItem="True">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="300"></GridViewColumn>
+                            <GridViewColumn Header="Preview">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Image Source="{Binding imgLocation, Converter={StaticResource cvt}}" Width="90" Height="90" VerticalAlignment="Top"></Image>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label HorizontalAlignment="Center" FontSize="20">Name</Label>
+            <TextBox Name="mtrxName" FontSize="22" MinWidth="400"></TextBox>
+        </StackPanel>
+        
+    </Grid>
+</Page>

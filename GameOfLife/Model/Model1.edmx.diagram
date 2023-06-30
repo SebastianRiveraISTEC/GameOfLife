@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dec5c9718856497495cb3a9638a49fc8" Name="Diagram1">
-        <EntityTypeShape EntityType="MatricesModel.Matrix" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatricesModel.MatrixImage" Width="1.5" PointX="4" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="9f1125e8b27046e2bd8987fe99dafb77" Name="Diagram1">
+        <EntityTypeShape EntityType="matrixModel.Matrix" Width="1.5" PointX="0.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matrixModel.MatrixImage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

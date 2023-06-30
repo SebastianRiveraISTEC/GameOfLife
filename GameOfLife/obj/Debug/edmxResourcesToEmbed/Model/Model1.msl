@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MatricesModelStoreContainer" CdmEntityContainer="MatricesEntities">
+  <EntityContainerMapping StorageEntityContainer="matrixModelStoreContainer" CdmEntityContainer="matrixEntities">
     <EntitySetMapping Name="Matrices">
-      <EntityTypeMapping TypeName="MatricesModel.Matrix">
+      <EntityTypeMapping TypeName="matrixModel.Matrix">
         <MappingFragment StoreEntitySet="Matrices">
           <ScalarProperty Name="MatrixName" ColumnName="MatrixName" />
           <ScalarProperty Name="RowNo" ColumnName="RowNo" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MatrixImages">
-      <EntityTypeMapping TypeName="MatricesModel.MatrixImage">
+      <EntityTypeMapping TypeName="matrixModel.MatrixImage">
         <MappingFragment StoreEntitySet="MatrixImages">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="path" ColumnName="path" />

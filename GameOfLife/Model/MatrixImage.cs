@@ -14,7 +14,7 @@ namespace GameOfLife.Model
     
     public partial class MatrixImage
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
         public string path { get; set; }
     }
 }

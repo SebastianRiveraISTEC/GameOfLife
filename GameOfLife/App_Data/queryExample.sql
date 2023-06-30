@@ -27,3 +27,7 @@
 ('test', 9, 0, 'alive'),
 ('test', 9, 4, 'alive'),
 ('test', 10, 2, 'alive')
+
+
+INSERT INTO MatrixImages (Name, path)VALUES
+('test', './')

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MatricesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="matrixModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Matrices">
     <Key>
       <PropertyRef Name="MatrixName" />
@@ -15,10 +15,10 @@
     <Key>
       <PropertyRef Name="Name" />
     </Key>
-    <Property Name="Name" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="24" Nullable="false" />
     <Property Name="path" Type="nvarchar" MaxLength="250" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="MatricesModelStoreContainer">
+  <EntityContainer Name="matrixModelStoreContainer">
     <EntitySet Name="Matrices" EntityType="Self.Matrices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MatrixImages" EntityType="Self.MatrixImages" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
