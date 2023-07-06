@@ -1,0 +1,11 @@
+
+GameOfLife/App_Data/Matrices.mdf
+GameOfLife/bin/Debug/Matrices.mdf
+*.mdf
+*.ldf
+*.mdf
+*.mdf
+GameOfLife/Matrices.mdf
+GameOfLife/Matrices_log.ldf
+GameOfLife/App_Data/Matrices.mdf
+*.mdf
