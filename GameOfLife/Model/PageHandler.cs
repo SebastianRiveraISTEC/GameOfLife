@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -35,10 +37,16 @@ namespace GameOfLife.Model
                 case "Page2":
                     CurrentPage = new Uri("Add.xaml", UriKind.Relative);
                     break;
-                default:
-                    // Handle other pages or actions here
+                case "Page3":
+                    CurrentPage = new Uri("Rules.xaml", UriKind.Relative);
                     break;
             }
+        }
+
+        public void Quit(object nothing)
+        {
+            Trace.WriteLine("Shutdown called");
+            Application.Current.Shutdown();
         }
 
         public PageHandler()
@@ -46,9 +54,11 @@ namespace GameOfLife.Model
 
             CurrentPage = new Uri("MainGame.xaml", UriKind.Relative);
             SwitchPageCommand = new RelayCommand<string>(SwitchPage);
+            QuitCommand = new RelayCommand<object>(Quit);
         }
 
         public ICommand SwitchPageCommand { get; }
+        public ICommand QuitCommand { get; }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

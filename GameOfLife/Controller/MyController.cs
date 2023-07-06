@@ -42,11 +42,9 @@ namespace GameOfLife.Controller
             cmdadd = new CmdArg(addMatrix, (parameter) => true);
             cmddel = new CmdArg(delMatrix, (parameter) => true);
             cmdupd = new CmdArg(updateMatrix, (parameter) => true);
-            cmdquit = new Cmd(Quit, canexecute: null);
-
         }
 
-        public void Quit()
+        public static void Quit()
         {
             Trace.WriteLine("Shutdown called");
             Application.Current.Shutdown();

@@ -72,7 +72,7 @@
                                 CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#53565A"/>
@@ -92,8 +92,8 @@
 
     <Grid DataContext="{Binding Source={StaticResource ctrl}}" x:Name="mainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="209*"/>
+            <RowDefinition Height="163*"/>
+            <RowDefinition Height="111*"/>
             <RowDefinition Height="133*"/>
             <RowDefinition Height="43*"/>
         </Grid.RowDefinitions>
@@ -116,30 +116,36 @@
             <Canvas x:Name="CanvasBoard" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </StackPanel>
 
-        <StackPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Center">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListView ItemsSource="{Binding ViewMatrices}" IsSynchronizedWithCurrentItem="True">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="300"></GridViewColumn>
-                            <GridViewColumn Header="Preview">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Image Source="{Binding imgLocation, Converter={StaticResource cvt}}" Width="90" Height="90" VerticalAlignment="Top" HorizontalAlignment="Center"></Image>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </ScrollViewer>
+        <StackPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="auto" ScrollViewer.HorizontalScrollBarVisibility="disabled" Grid.Row="0">
+                    <ListView ItemsSource="{Binding ViewMatrices}" IsSynchronizedWithCurrentItem="True" Grid.Row="0" ScrollViewer.CanContentScroll="False">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="300"></GridViewColumn>
+                                <GridViewColumn Header="Preview">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Image Source="{Binding imgLocation, Converter={StaticResource cvt}}" Width="90" Height="90" VerticalAlignment="Top"></Image>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
             <Button Style="{StaticResource SmallRoundButtonStyle}" Content="Load" Command="{Binding cmdload, Source={StaticResource ctrl}}" 
-                    CommandParameter="{Binding CurrentMatrix.matrix, Source={StaticResource vm}}">
+                    CommandParameter="{Binding CurrentMatrix.matrix, Source={StaticResource vm}}" >
             </Button>
         </StackPanel>
-
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
             <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Cells Alive:</Label>

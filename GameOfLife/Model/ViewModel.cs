@@ -62,9 +62,23 @@ namespace GameOfLife.Model
 
     public class ViewModel : UIElement
     {
-        public MyController ctrl { get; set; }
+        //public MyController ctrl { get; set; }
 
         #region Propriedades
+
+
+
+        public MyController ctrl
+        {
+            get { return (MyController)GetValue(ctrlProperty); }
+            set { SetValue(ctrlProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ctrl.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ctrlProperty =
+            DependencyProperty.Register("ctrl", typeof(MyController), typeof(ViewModel), new PropertyMetadata(null));
+
+
 
         public ObservableCollection<MatrixInstance> Matrices
         {

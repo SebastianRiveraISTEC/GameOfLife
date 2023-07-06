@@ -22,10 +22,27 @@
         <DockPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" Grid.RowSpan="2">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Menu">
-                    <MenuItem Header="Game" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page1"></MenuItem>
-                    <MenuItem Header="Add/Remove" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page2"></MenuItem>
+                    <MenuItem Header="Game" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page1">
+                        <MenuItem.Icon>
+                            <Image Source="../Icons/play.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Add/Remove" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page2">
+                        <MenuItem.Icon>
+                            <Image Source="../Icons/add.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Rules" Command="{Binding Ph.SwitchPageCommand}" CommandParameter="Page3">
+                        <MenuItem.Icon>
+                            <Image Source="../Icons/rules.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Quit" Command="{Binding ctrl.cmdquit}"></MenuItem>
+                    <MenuItem Header="Quit" Command="{Binding Ph.QuitCommand}" >
+                        <MenuItem.Icon>
+                            <Image Source="../Icons/quit.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
         </DockPanel>

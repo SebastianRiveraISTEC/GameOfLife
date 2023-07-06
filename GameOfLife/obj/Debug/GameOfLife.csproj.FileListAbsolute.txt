@@ -52,3 +52,5 @@ C:\Users\Sebastian\Documents\GitHub\GameOfLife\GameOfLife\obj\Debug\View\Diction
 C:\Users\Sebastian\Documents\GitHub\GameOfLife\GameOfLife\obj\Debug\View\MainGame.baml
 C:\Users\Sebastian\Documents\GitHub\GameOfLife\GameOfLife\obj\Debug\App.g.cs
 C:\Users\Sebastian\Documents\GitHub\GameOfLife\GameOfLife\obj\Debug\App.baml
+C:\Users\Sebastian\Documents\GitHub\GameOfLife\GameOfLife\obj\Debug\View\Rules.g.cs
+C:\Users\Sebastian\Documents\GitHub\GameOfLife\GameOfLife\obj\Debug\View\Rules.baml

@@ -1,0 +1,59 @@
+﻿<Page x:Class="GameOfLife.Rules"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GameOfLife"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="#E6CDB5"
+      Title="Rules">
+
+    <Page.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="FontFamily" Value="Book Antiqua" />
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="41*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
+                <Run Text="• " />
+                <Run Text="Any live cell with fewer than two live neighbours dies, as if by underpopulation" />
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
+                <Run Text="• " />
+                <Run Text=" Any live cell with two or three live neighbours lives on to the next generation."/>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
+                <Run Text="• " />
+                <Run Text=" Any live cell with more than three live neighbours dies, as if by overpopulation." />
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <TextBlock Style="{StaticResource TextBlockStyle}">
+                <Run Text="• " />
+                <Run Text=" Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction."/>
+            </TextBlock>
+        </StackPanel>
+
+    </Grid>
+</Page>

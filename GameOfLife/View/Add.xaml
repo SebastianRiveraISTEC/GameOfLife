@@ -91,8 +91,8 @@
 
     <Grid DataContext="{Binding Source={StaticResource ctrl}}" x:Name="mainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="209*"/>
+            <RowDefinition Height="163*"/>
+            <RowDefinition Height="111*"/>
             <RowDefinition Height="133*"/>
             <RowDefinition Height="43*"/>
         </Grid.RowDefinitions>
@@ -101,7 +101,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Margin="0,46,0,0" Width="340">
+        <StackPanel Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Margin="0,46,0,0" Width="340" Grid.RowSpan="2">
             <Button Style="{StaticResource RoundButtonStyle}" Content="Add" Command="{Binding cmdadd}"
                 CommandParameter="{Binding ElementName=mtrxName, Path=Text}" Click="AddButton_Click"
                 ></Button>
@@ -109,18 +109,18 @@
                 CommandParameter="{Binding CurrentMatrix, Source={StaticResource vm}}"></Button>
         </StackPanel>
 
-
         <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3">
             <Canvas x:Name="CanvasBoard" VerticalAlignment="Stretch"/>
         </Grid>
 
-        <StackPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Center">
-            <ScrollViewer VerticalScrollBarVisibility="auto" ScrollViewer.HorizontalScrollBarVisibility="auto">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <ListView ItemsSource="{Binding ViewMatrices}" IsSynchronizedWithCurrentItem="True">
+
+        <StackPanel DataContext="{Binding Source={StaticResource vm}}" Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="auto" ScrollViewer.HorizontalScrollBarVisibility="disabled" Grid.Row="0">
+                    <ListView ItemsSource="{Binding ViewMatrices}" IsSynchronizedWithCurrentItem="True" Grid.Row="0" ScrollViewer.CanContentScroll="False">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="300"></GridViewColumn>
@@ -136,19 +136,21 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
-            </ScrollViewer>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource SmallRoundButtonStyle}" Content="Load" Command="{Binding cmdload, Source={StaticResource ctrl}}" 
+                </ScrollViewer>
+            </Grid>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
+            <Button Style="{StaticResource SmallRoundButtonStyle}" Content="Load" Command="{Binding cmdload, Source={StaticResource ctrl}}" 
                     CommandParameter="{Binding CurrentMatrix.matrix, Source={StaticResource vm}}">
-                </Button>
-                <Button Style="{StaticResource SmallRoundButtonStyle}" Content="Update" Command="{Binding cmdupd}"
-                    CommandParameter="{Binding ElementName=mtrxName, Path=Text}" Click="AddButton_Click"
-                    ></Button>
-            </StackPanel>
+            </Button>
+            <Button Style="{StaticResource SmallRoundButtonStyle}" Content="Update" Command="{Binding cmdupd, Source={StaticResource ctrl}}"
+                    CommandParameter="{Binding Text, ElementName=mtrxName}" Click="AddButton_Click"
+                    />
+            <Button VerticalAlignment="Top" Style="{StaticResource SmallRoundButtonStyle}" Content="Clear" Command="{Binding cmdreset, Source={StaticResource ctrl}}" >
+            </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Height="37">
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
             <Label HorizontalAlignment="Center" FontSize="20">Name</Label>
             <TextBox Name="mtrxName" FontSize="22" MinWidth="400"></TextBox>
         </StackPanel>
